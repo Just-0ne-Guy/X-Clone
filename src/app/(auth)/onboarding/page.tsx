@@ -1,9 +1,15 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { getUserAction, saveUserAction } from "@/actions/user.action";
 import Logout from "@/components/sharing/Logout";
 import OnBoarding from "@/components/forms/OnBoarding";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Image from "next/image";
+
+
+
 
 const Page = async () => {
 	const clerkUser = await currentUser();
