@@ -26,7 +26,7 @@ const Page = async () => {
 		imageUrl: clerkUser.imageUrl,
 		name: "",
 		username: (clerkUser.username ?? "").trim().toLowerCase(),
-		email: clerkUser.emailAddresses[0].emailAddress,
+		email: clerkUser.emailAddresses?.[0]?.emailAddress ?? "",
 		bio: "",
 	};
 
