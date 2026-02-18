@@ -1,5 +1,7 @@
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const fetchCache = "force-no-store";
+
 
 import { getUserAction, saveUserAction } from "@/actions/user.action";
 import Logout from "@/components/sharing/Logout";
@@ -13,7 +15,8 @@ import Image from "next/image";
 
 const Page = async () => {
 	const clerkUser = await currentUser();
-	if (!clerkUser) return null;
+	if (!clerkUser) redirect("/");
+
 
 	const user = await getUserAction(clerkUser.id);
 	if (user?.isCompleted) redirect("/home");
@@ -22,7 +25,7 @@ const Page = async () => {
 		id: clerkUser.id,
 		imageUrl: clerkUser.imageUrl,
 		name: "",
-		username: clerkUser.username!.toLowerCase(),
+		username: (clerkUser.username ?? "").trim().toLowerCase(),
 		email: clerkUser.emailAddresses[0].emailAddress,
 		bio: "",
 	};
